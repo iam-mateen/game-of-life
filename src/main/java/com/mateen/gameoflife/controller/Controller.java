@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -16,6 +18,12 @@ import com.mateen.gameoflife.model.Cell;
 import com.mateen.gameoflife.model.GameOfLife;
 import com.mateen.gameoflife.model.Grid;
 import com.mateen.gameoflife.model.Speed;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+import java.nio.file.Paths;
 
 public class Controller {
 
@@ -28,18 +36,6 @@ public class Controller {
   @FXML
   public AnchorPane rootPane;
   @FXML
-  public ToggleButton playToggleButton;
-  @FXML
-  public ToggleButton pauseToggleButton;
-  @FXML
-  public ToggleButton slowToggleButton;
-  @FXML
-  public ToggleButton mediumToggleButton;
-  @FXML
-  public ToggleButton fastToggleButton;
-  @FXML
-  public ToggleButton fastestToggleButton;
-  @FXML
   public Label generationNumberLabel;
   @FXML
   public GridPane gridPane;
@@ -48,29 +44,10 @@ public class Controller {
 
   @FXML
   public void initialize() {
-    initializePlayAndPauseToggleButtons();
-    initializeSpeedToggleButtons();
   }
 
-  private void initializePlayAndPauseToggleButtons() {
-    ToggleGroup toggleGroup = new PersistentToggleGroup();
-    toggleGroup.getToggles().addAll(playToggleButton, pauseToggleButton);
-    pauseToggleButton.setSelected(true);
-  }
 
-  private void initializeSpeedToggleButtons() {
-    ToggleGroup toggleGroup = new PersistentToggleGroup();
-    toggleGroup.getToggles()
-        .addAll(slowToggleButton, mediumToggleButton, fastToggleButton, fastestToggleButton);
-    slowToggleButton.setSelected(true);
-  }
 
-  /**
-   * Sets {@link GameOfLife} instance.
-   *
-   * @param gameOfLife {@link GameOfLife} instance
-   * @throws NullPointerException if {@code gameOfLife} is {@code null}
-   */
   public void setGameOfLife(GameOfLife gameOfLife) {
     this.gameOfLife = requireNonNull(gameOfLife, "game of life is null");
     setGenerationNumberLabelTextProperty();
@@ -95,7 +72,6 @@ public class Controller {
 
   private void addCellPane(int rowIndex, int columnIndex) {
     Pane cellPane = new Pane();
-
     addCellPaneStyle(cellPane);
     addAlivePropertyListener(rowIndex, columnIndex, cellPane);
     setAliveStyle(cellPane, gameOfLife.getGrid().getCell(rowIndex, columnIndex).isAlive());
@@ -133,44 +109,33 @@ public class Controller {
   }
 
   @FXML
-  public void playToggleButtonAction() {
+  public void playButtonAction() {
     gameOfLife.play();
   }
 
   @FXML
-  public void pauseToggleButtonAction() {
+  public void pauseButtonAction() {
     gameOfLife.pause();
   }
 
   @FXML
   public void resetButtonAction() {
     gameOfLife.reset();
-    pauseToggleButton.setSelected(true);
   }
 
   @FXML
   public void clearButtonAction() {
     gameOfLife.clear();
-    pauseToggleButton.setSelected(true);
   }
 
-  @FXML
-  public void slowToggleButtonAction() {
-    gameOfLife.setSpeed(Speed.SLOW);
-  }
+//  @FXML
+//  public void mediumToggleButtonAction() {
+//    gameOfLife.setSpeed(Speed.MEDIUM);
+//  }
+//
+//  @FXML
+//  public void fastToggleButtonAction() {
+//    gameOfLife.setSpeed(Speed.FAST);
+//  }
 
-  @FXML
-  public void mediumToggleButtonAction() {
-    gameOfLife.setSpeed(Speed.MEDIUM);
-  }
-
-  @FXML
-  public void fastToggleButtonAction() {
-    gameOfLife.setSpeed(Speed.FAST);
-  }
-
-  @FXML
-  public void fastestToggleButtonAction() {
-    gameOfLife.setSpeed(Speed.FASTEST);
-  }
 }

@@ -8,6 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
             styleClass="background" stylesheets="@style.css"
             xmlns:fx="http://javafx.com/fxml"
@@ -17,7 +20,7 @@
     </padding>
     <children>
         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0"
-              prefWidth="980.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              prefWidth="1000.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
               AnchorPane.topAnchor="0.0">
             <padding>
                 <Insets bottom="0.0" left="10.0" right="10.0" top="0.0"/>
@@ -25,39 +28,53 @@
             <children>
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
                            prefHeight="24.0" prefWidth="6.0"/>
-                <ToggleButton fx:id="playToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                              mnemonicParsing="false" onAction="#playToggleButtonAction" prefHeight="24.0"
-                              prefWidth="62.0" styleClass="button" text="Play"/>
-                <ToggleButton fx:id="pauseToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                              mnemonicParsing="false" onAction="#pauseToggleButtonAction" prefHeight="24.0"
-                              prefWidth="71.0" styleClass="button" text="Pause"/>
-                <Button fx:id="resetButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#resetButtonAction" prefHeight="24.0" prefWidth="70.0"
-                        text="Reset"/>
+                <Button fx:id="playButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                              mnemonicParsing="false" onAction="#playButtonAction" prefHeight="24.0"
+                              prefWidth="62.0" styleClass="button" text="Start"/>
+                <Button fx:id="pauseButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                              mnemonicParsing="false" onAction="#pauseButtonAction" prefHeight="24.0"
+                              prefWidth="71.0" styleClass="button" text="Stop"/>
+
                 <Button fx:id="clearButton" maxHeight="-Infinity" maxWidth="-Infinity"
                         mnemonicParsing="false" onAction="#clearButtonAction" prefHeight="24.0" prefWidth="70.0"
                         text="Clear"/>
+
+                <Button fx:id="resetButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#resetButtonAction" prefHeight="24.0" prefWidth="70.0"
+                        text="Reset"/>
+
+                <Button fx:id="saveStateButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                        mnemonicParsing="false" prefHeight="24.0"
+                        prefWidth="62.0" styleClass="button" text="Save"/>
+
+                <Button fx:id="loadStateButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                        mnemonicParsing="false" prefHeight="24.0"
+                        prefWidth="62.0" styleClass="button" text="Load"/>
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
                            prefHeight="24.0" prefWidth="6.0"/>
                 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0"
-                      prefWidth="381.0" spacing="10.0">
+                      prefWidth="300.0" spacing="20.0">
                     <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="52.0"
-                               text="Speed"/>
-                        <ToggleButton fx:id="slowToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                                      mnemonicParsing="false" onAction="#slowToggleButtonAction" prefHeight="24.0"
-                                      prefWidth="62.0" styleClass="button" text="Slow"/>
-                        <ToggleButton fx:id="mediumToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                                      mnemonicParsing="false" onAction="#mediumToggleButtonAction" prefHeight="24.0"
-                                      prefWidth="80.0" styleClass="button" text="Medium"/>
-                        <ToggleButton fx:id="fastToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                                      mnemonicParsing="false" onAction="#fastToggleButtonAction" prefHeight="24.0"
-                                      prefWidth="59.0" styleClass="button" text="Fast"/>
-                        <ToggleButton fx:id="fastestToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
-                                      mnemonicParsing="false" onAction="#fastestToggleButtonAction" prefHeight="24.0"
-                                      prefWidth="88.0" styleClass="button" text="Fastest"/>
+                        <!--                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="52.0"-->
+                        <!--                               text="Speed"/>-->
+
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1463.0" layoutY="551.0">
+                            <image>
+                                <Image url="@magnify.png" />
+                            </image>
+                        </ImageView>
+                        <Slider prefWidth="80" prefHeight="24"/>
+
+                        <ImageView fitHeight="15.0" fitWidth="30.0" layoutX="1463.0" layoutY="551.0">
+                            <image>
+                                <Image url="@meter.png" />
+                            </image>
+                        </ImageView>
+
+                        <Slider prefWidth="80" prefHeight="24"/>
                     </children>
                 </HBox>
+
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
                            prefHeight="24.0" prefWidth="6.0"/>
                 <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="103.0"

@@ -22,14 +22,8 @@ public class GameOfLife {
   private final Grid grid;
   private final ReadOnlyLongWrapper generation = new ReadOnlyLongWrapper();
   private Timeline timeline;
-  private final ObjectProperty<Speed> speed = new SimpleObjectProperty<>(Speed.SLOW);
+  private final ObjectProperty<Speed> speed = new SimpleObjectProperty<>(Speed.MEDIUM);
 
-  /**
-   * Creates a new {@code GameOfLife} instance given the underlying {@link Grid}.
-   *
-   * @param grid the underlying {@link Grid}
-   * @throws NullPointerException if {@code grid} is {@code null}
-   */
   public GameOfLife(Grid grid) {
     this.grid = requireNonNull(grid, "grid is null");
     updateTimeline();
@@ -45,9 +39,6 @@ public class GameOfLife {
     timeline.setCycleCount(Animation.INDEFINITE);
   }
 
-  /**
-   * Transitions into the next generation.
-   */
   public void next() {
     grid.nextGeneration();
     generation.set(getGeneration() + 1);
@@ -64,69 +55,36 @@ public class GameOfLife {
     });
   }
 
-  /**
-   * Returns the current generation.
-   *
-   * @return the current generation
-   */
   public long getGeneration() {
     return generation.get();
   }
 
-  /**
-   * Returns the generation {@link ReadOnlyLongProperty}.
-   *
-   * @return the generation {@link ReadOnlyLongProperty}
-   */
   public ReadOnlyLongProperty generationProperty() {
     return generation.getReadOnlyProperty();
   }
 
-  /**
-   * Returns the {@link Grid}.
-   *
-   * @return the {@link Grid}
-   */
   public Grid getGrid() {
     return grid;
   }
 
-  /**
-   * Sets the {@link Speed} of the game.
-   *
-   * @param speed the {@link Speed} of the game
-   * @throws NullPointerException if {@code speed} is {@code null}
-   */
   public void setSpeed(Speed speed) {
     this.speed.set(requireNonNull(speed, "speed is null"));
   }
 
-  /**
-   * Plays the game.
-   */
   public void play() {
     timeline.play();
   }
 
-  /**
-   * Pauses the game.
-   */
   public void pause() {
     timeline.pause();
   }
 
-  /**
-   * Clears the current game.
-   */
   public void clear() {
     pause();
     grid.clear();
     generation.set(0);
   }
 
-  /**
-   * Clears the current game and randomly generates a new one.
-   */
   public void reset() {
     clear();
     grid.randomGeneration(RANDOM);

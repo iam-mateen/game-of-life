@@ -1,5 +1,6 @@
 module com.mateen.gameoflife {
     requires javafx.controls;
+    requires javafx.media;
     requires javafx.fxml;
     requires javafx.web;
 
@@ -9,6 +10,7 @@ module com.mateen.gameoflife {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.mateen.gameoflife to javafx.fxml;
     exports com.mateen.gameoflife;

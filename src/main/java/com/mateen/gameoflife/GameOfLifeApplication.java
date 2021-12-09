@@ -17,11 +17,7 @@ import com.mateen.gameoflife.controller.Controller;
 import com.mateen.gameoflife.model.GameOfLife;
 import com.mateen.gameoflife.model.Grid;
 
-/**
- * Entry point for <i>The Game of Life</i> application.
- *
- * @author Mike Lowe
- */
+
 public class GameOfLifeApplication extends Application {
 
   private final GameOfLife gameOfLife;
@@ -29,19 +25,11 @@ public class GameOfLifeApplication extends Application {
   private Stage primaryStage;
   private Parent view;
 
-  /**
-   * Creates a new {@code GameOfLifeApplication} instance.
-   */
+
   public GameOfLifeApplication() {
     this(new GameOfLife(new Grid(Constants.ROWS, Constants.COLUMNS)));
   }
 
-  /**
-   * Creates a new {@code GameOfLifeApplication} instance given a {@link GameOfLife} instance.
-   *
-   * @param gameOfLife the {@link GameOfLife} instance
-   * @throws NullPointerException if {@code gameOfLife} is {@code null}
-   */
   public GameOfLifeApplication(GameOfLife gameOfLife) {
     this.gameOfLife = requireNonNull(gameOfLife, "game of life is null");
   }
@@ -53,6 +41,7 @@ public class GameOfLifeApplication extends Application {
     initializeView();
     initializeController();
     showScene();
+
   }
 
   private void initializePrimaryStage(Stage primaryStage) {
